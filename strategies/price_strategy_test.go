@@ -30,6 +30,18 @@ func TestSortByPriceCases(t *testing.T) {
 			},
 			expected: []int{2, 3, 1},
 		},
+		{
+			name:     "Nill product",
+			input:    nil,
+			expected: nil,
+		},
+		{
+			name: "Single product",
+			input: []types.Product{
+				{ID: 1, Price: 1},
+			},
+			expected: []int{1},
+		},
 	}
 
 	for _, tt := range tests {
