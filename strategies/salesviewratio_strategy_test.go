@@ -37,6 +37,26 @@ func TestSortBySalesViewRatio(t *testing.T) {
 			},
 			expected: []int{7, 6},
 		},
+		{
+			name:     "nil products (should handle safely)",
+			input:    nil,
+			expected: nil,
+		},
+		{
+			name: "single product (should handle safely)",
+			input: []types.Product{
+				{ID: 6, SalesCount: 10, ViewsCount: 0},
+			},
+			expected: []int{6},
+		},
+		{
+			name: "negative views (should handle safely)",
+			input: []types.Product{
+				{ID: 6, SalesCount: 10, ViewsCount: -1}, // divide by zero — should treat as 0
+				{ID: 7, SalesCount: 10, ViewsCount: 10}, // ratio = 1.0
+			},
+			expected: []int{7, 6},
+		},
 	}
 
 	for _, tt := range tests {
