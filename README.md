@@ -43,3 +43,24 @@ Use it like this:
 sorter.SetStrategy(SortByName{})
 sorted := sorter.Sort(products)
 ```
+
+
+---
+
+## 🧪 Testing
+
+This project uses Go’s built-in testing package for unit tests.
+
+✅ How to Run Tests
+
+Run all tests in the project:
+
+```bash
+go test ./...
+```
+
+Run tests in a specific package (e.g. strategies):
+
+```bash
+go test ./strategies
+```
