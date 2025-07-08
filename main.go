@@ -20,4 +20,8 @@ func main() {
 	sorter := sorters.NewProduct(strategies.SortByPrice{})
 	sortedProducts := sorter.Sort(products)
 	slog.Info("Sorted by Price", "products", sortedProducts)
+
+	sorter.SetSortStrategy(strategies.SortBySalesViewRatio{})
+	sortedProducts = sorter.Sort(products)
+	slog.Info("Sorted by Sales/View Ratio", "products", sortedProducts)
 }
