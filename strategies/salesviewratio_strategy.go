@@ -10,9 +10,15 @@ type SortBySalesViewRatio struct{}
 
 func (s SortBySalesViewRatio) Sort(products []types.Product) []types.Product {
 	sort.Slice(products, func(i, j int) bool {
-		ratioI := float64(products[i].SalesCount) / float64(products[i].ViewsCount)
-		ratioJ := float64(products[j].SalesCount) / float64(products[j].ViewsCount)
-		return ratioI > ratioJ // descending order
+		return ratio(products[i]) > ratio(products[j]) // descending
 	})
+
 	return products
+}
+
+func ratio(p types.Product) float64 {
+	if p.ViewsCount == 0 {
+		return 0 // or a sentinel value like -1 if you want to treat it as lowest
+	}
+	return float64(p.SalesCount) / float64(p.ViewsCount)
 }
